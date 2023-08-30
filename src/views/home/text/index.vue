@@ -1,4 +1,5 @@
 <template>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <article class="post-item" data-post-id="17658768">
     <template v-for="item in data.article" :key="item.id">
         <section class="post-item-body">
@@ -17,9 +18,9 @@
                     <span xt-marked="ok">{{ item.updatetime ? formatDate(item.updatetime) : formatDate(item.createtime) }}</span>
                 </span>
                 <a id="digg_control_17658768" class="post-meta-item btn " href="javascript:void(0)" onclick="DiggPost('fulongyuanjushi', 17658768, 530760, 1);return false;">
-                    <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="#icon_digg"></use>
-                    </svg>
+                    <span class="material-symbols-outlined">
+                        thumb_up
+                    </span>
                     <span id="digg_count_17658768" xt-marked="ok">{{ item.lookcount }}</span>
                 </a>
                 <a class="post-meta-item btn" href="https://www.cnblogs.com/fulongyuanjushi/p/17658768.html#commentform">
@@ -193,6 +194,19 @@ footer {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+/* 點贊 */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.material-symbols-outlined:hover{
+  font-variation-settings:
+  'FILL' 1;
+  cursor: pointer;
 }
 </style>
   
