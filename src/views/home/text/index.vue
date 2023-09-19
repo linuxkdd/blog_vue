@@ -4,7 +4,7 @@
     <template v-for="item in data.article" :key="item.id">
         <section class="post-item-body">
             <div class="post-item-text">
-                <router-link class="post-item-title" :to="{ path: '/p', query: { page_id: item.id } }" target="_blank" xt-marked="ok">{{ item.title }}</router-link>
+                <router-link class="post-item-title" :to="{ path: '/p', query: { articleid: item.articleid } }" target="_blank" xt-marked="ok">{{ item.title }}</router-link>
                 <p class="post-item-summary" xt-marked="ok">
                             <a :href="item.useravatar">
                                 <img :src="item.useravatar" class="avatar" alt="博主头像">

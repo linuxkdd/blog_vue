@@ -1,23 +1,16 @@
 <template>
     <navs/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <div id="home">
         <div id="header">
+        </div>
             <div id="blogTitle">
-                
         <!--done-->
-        <h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/n00dle/">noodle</a>
+        <h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/n00dle/">{{ data.title }}</a>
         </h1>
-        <h2>热爱生命，热爱生活。</h2>
-        <h3 align="center">开发中。。。。。</h3>
-        <div class="text"></div>
-
-        <span class="material-symbols-outlined">
-        thumb_up
-        </span>
-        <h3 align="center">开发中。。。。。</h3>
-    </div>
-    </div>
+           </div>
+        <div class="text">
+            {{ data.content }}
+        </div>
     </div>
     <!-- 评论列表 -->
     <div class="pl_list">
@@ -38,66 +31,68 @@
 
 
 <script setup>
-    import axios from 'axios'
-    import Editor from '@tinymce/tinymce-vue';
-    import { reactive, ref } from 'vue'
-    import navs from '@/views/home/nav/index.vue'
-    import { useRoute } from 'vue-router';
-    import { ElMessage } from 'element-plus'
+    // import axios from 'axios'
+    // import Editor from '@tinymce/tinymce-vue';
+    // import { reactive, ref } from 'vue'
+    // import navs from '@/views/home/nav/index.vue'
+    // import { useRoute } from 'vue-router';
+    // import { ElMessage } from 'element-plus'
 
-    const route = useRoute();
-    const pageId = route.query.page_id;
-    //评论列表
-    const tableData = [
-        {
-            date: '2016-05-03',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-        },
-        {
-            date: '2016-05-02',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-        }
-    ]
-    //编辑器
-    const editorContent = ref('')
-    const editorOptions = reactive({
-        height: 200,
-        width: 600,
-        menubar: false,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar:
-          'undo redo | formatselect | bold italic backcolor | \
-          alignleft aligncenter alignright alignjustify | \
-          bullist numlist outdent indent | removeformat | help'
-      })
-      //提交评论
-    const submitComment = () => {
-        console.log(editorContent.value)
-    }
-    axios.get('/font/blog/content?page_id=' + pageId)
-            .then(response => {
-            if (response.status == 200){
-                    //获取展示列表
-                    //状态判断
-                    console.log(response.data)
-            }
-            }) 
-            .catch(error => {
-            // 处理请求错误
-            ElMessage.error(error)
-            });
+    // const data = ref([]) // 使用 ref 创建响应式的 data 属性
+    // const route = useRoute();
+    // const articleid = route.query.articleid;
+    // //评论列表
+    // const tableData = [
+    //     {
+    //         date: '2016-05-03',
+    //         name: 'Tom',
+    //         address: 'No. 189, Grove St, Los Angeles',
+    //     },
+    //     {
+    //         date: '2016-05-02',
+    //         name: 'Tom',
+    //         address: 'No. 189, Grove St, Los Angeles',
+    //     }
+    // ]
+    // //编辑器
+    // const editorContent = ref('')
+    // const editorOptions = reactive({
+    //     height: 200,
+    //     width: 600,
+    //     menubar: false,
+    //     plugins: [
+    //       'advlist autolink lists link image charmap print preview anchor',
+    //       'searchreplace visualblocks code fullscreen',
+    //       'insertdatetime media table paste code help wordcount'
+    //     ],
+    //     toolbar:
+    //       'undo redo | formatselect | bold italic backcolor | \
+    //       alignleft aligncenter alignright alignjustify | \
+    //       bullist numlist outdent indent | removeformat | help'
+    //   })
+    //   //提交评论
+    // const submitComment = () => {
+    //     console.log(editorContent.value)
+    // }
+    // axios.get('/font/blog/p?articleid=' + articleid)
+    //         .then(response => {
+    //             if (response.data.status === 20000){
+    //                     console.log("获取展示列表成功")
+    //                     data.value = response.data.data.article
+    //                 }else{
+    //                     console.log("状态码异常")
+    //                 }
+    //         }) 
+    //         .catch(error => {
+    //         // 处理请求错误
+    //         ElMessage.error(error)
+    //         });
 </script>
 
 <style scoped>
     .text {
-        width: 100px;
-        height:1080px;
+        width: 100%;
+        height:100%;
         background-color: #fff;
     }
     #home {
@@ -136,21 +131,5 @@
     }
     ul > li > p {
         font-size:14px;
-    }
-
-
-
-
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 100,
-  'GRAD' 0,
-  'opsz' 200
-}
-.material-symbols-outlined:hover{
-  font-variation-settings:
-  'FILL' 1;
-  cursor: pointer;
     }
 </style>

@@ -5,10 +5,12 @@ import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import UndrawUi from 'undraw-ui'
+import 'undraw-ui/dist/style.css'
 
 
 
-axios.defaults.baseURL = 'http://192.168.0.121:8080'; // 设置基本的URL
+axios.defaults.baseURL = 'http://192.168.0.121:8081'; // 设置基本的URL
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做一些处理
   return config;
@@ -46,4 +48,5 @@ app.config.globalProperties.$useravatar = getCookie('useravatar');
 app.use(ElementPlus)
 app.use(store)
 app.use(router)
+app.use(UndrawUi)
 app.mount('#app')

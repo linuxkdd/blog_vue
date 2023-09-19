@@ -18,7 +18,10 @@
         <el-input v-model="form.username" maxlength="8" minlength="5" placeholder="用户名" show-word-limit/>
       </el-form-item>
       <el-form-item label="邮箱">
-        <el-input v-model="form.email" maxlength="25" minlength="5" placeholder="邮箱" show-word-limit/>
+        <el-input v-model="form.email" maxlength="25" minlength="5" placeholder="邮箱" show-word-limit/><el-button style="" @click="sendmail" type="primary">发送</el-button>
+      </el-form-item>
+      <el-form-item label="验证码">
+        <el-input v-model="form.authid" maxlength="6" minlength="6" placeholder="验证码" show-word-limit/>
       </el-form-item>
       <el-form-item label="手机号">
         <el-input v-model="form.phone" maxlength="11" minlength="5" placeholder="手机号" show-word-limit/>
@@ -47,10 +50,29 @@ const form = reactive({
   email: '',
   password: '',
   phone: '',
+  authid: ''
 })
+//邮箱发送验证码
+const sendmail = () => {
+  axios.post('/api/auth/checkcode', { email: form.email })
+      .then(response => {
+        // 处理响应数据
+        if (response.data.status === 20000){
+            //发送成功
+            ElMessage.success("验证码发送成功!")
+        }else{
+            ElMessage.error(response.data.message)
+            console.log(response.data)
+        }
+      }) 
+      .catch(error => {
+        // 处理请求错误
+        ElMessage.error(error)
+      });
+}
 //form提交
 const onSubmit = () => {
-  axios.post('/api/auth/register', { email: form.email, password: form.password,tel:form.phone, username: form.username })
+  axios.post('/api/auth/register', { email: form.email, password: form.password,tel:form.phone, username: form.username, authid: form.authid })
       .then(response => {
         // 处理响应数据
         if (response.data.status === 20000){

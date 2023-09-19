@@ -46,6 +46,11 @@ const routes = [
     name: 'p',
     component: () => import('../views/home/p/index.vue')
   },
+  {
+    path: '/test',//测试
+    name: 'test',
+    component: () => import('../views/home/test/index.vue')
+  },
 ]
 
 const router = createRouter({
